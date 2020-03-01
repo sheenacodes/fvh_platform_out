@@ -1,0 +1,29 @@
+---
+parameters:
+    - in: body
+      description: Details of user to be created
+      schema:
+          type: object
+          required: username
+          properties:
+              username:
+                  type: string
+                  required: true
+              email:
+                  type: string
+                  required: true
+              password:
+                  type: string
+                  required: true
+responses:
+    200:
+        description: Created user details
+        schema:
+            type: object
+            properties:
+                username:
+                    type: string
+                    required: true
+                email:
+                    type: string
+                    required: true
