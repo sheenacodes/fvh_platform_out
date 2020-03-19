@@ -1,5 +1,5 @@
-# platform-input
+# platform-output
 
 experimental work
 
-designing Endpoints for platform to injest data and send it to apache kafka
+designing Endpoints for platform to send out data from sink db
