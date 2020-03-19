@@ -22,7 +22,8 @@ class Observation(Resource):
         try:
             query_parameters = request.args
             print(query_parameters)
-        
+            min_resulttime = None
+            max_resulttime = None
             if 'minresulttime' in query_parameters:
                 min_resulttime = request.args['minresulttime']
                 min_resulttime = datetime.strptime(min_resulttime, '%Y-%m-%d,%H:%M:%S.%f')

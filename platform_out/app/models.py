@@ -24,16 +24,25 @@ class Observations(db.Model):
 
     @classmethod
     def filter_by_resultime(cls, mintime, maxtime):
-        
-        obs_list = Observations.query.filter(
-            and_(Observations.resulttime <= maxtime, Observations.resulttime >= mintime)
-        )
+
+        if mintime == None:
+            obs_list = Observations.query.filter(Observations.resulttime <= maxtime)
+
+        elif maxtime == None:
+            obs_list = Observations.query.filter(Observations.resulttime >= mintime)
+
+        else:
+            obs_list = Observations.query.filter(
+                and_(
+                    Observations.resulttime <= maxtime,
+                    Observations.resulttime >= mintime,
+                )
+            )
+
         def to_json(x):
             return {"result": x.result, "result time": x.resulttime}
 
-        return {
-            "Observations": list(map(lambda x: to_json(x), obs_list))
-        }
+        return {"Observations": list(map(lambda x: to_json(x), obs_list))}
 
     @classmethod
     def return_all(cls):
