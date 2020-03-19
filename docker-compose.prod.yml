@@ -12,8 +12,6 @@ services:
       - ./platform_out/:/project/
     expose:
       - 5000
-    #env_file:
-    #  - kafka-variables.env
     environment:
       - FLASK_APP=app/__init__.py
       - FLASK_ENV=development
@@ -25,7 +23,6 @@ services:
       - DATABASE=postgres 
     depends_on:   
       - platform-db
-      - redis
 
   platform-db:
     build:
@@ -44,7 +41,7 @@ services:
     ports:
       - 1337:80
     depends_on:
-      - platform_outcoming_api
+      - platform_outgoing_api
 
 volumes:
   postgres_data:
