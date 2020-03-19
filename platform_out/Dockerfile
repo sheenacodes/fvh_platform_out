@@ -20,13 +20,4 @@ RUN \
  python3 -m pip install -r requirements.txt --no-cache-dir && \
  apk --purge del .build-deps
 
- # add entrypoint.sh
-#COPY ./entrypoint.sh /project/entrypoint.sh
-#RUN chmod +x /project/entrypoint.sh
-
-# add app
 COPY . /project/
-
-#ENTRYPOINT ["/project/entrypoint.sh"]
-# run server
-#CMD python manage.py run -h 0.0.0.0

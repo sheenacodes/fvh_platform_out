@@ -2,15 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flasgger import Swagger
-from flask_jwt_extended import JWTManager
 import os
 import sys
-import redis
 from flask import jsonify
 
 db = SQLAlchemy()
 
-jwt = JWTManager()
 # print(app.config, file=sys.stderr)
 
 template = {
@@ -52,21 +49,10 @@ def create_app(script_info=None):
 
     # set up extensions
     db.init_app(app)
-    jwt.init_app(app)
     swagger.init_app(app,)
 
     # register blueprints
-    from app.resources.user import users_blueprint
-
-    app.register_blueprint(users_blueprint)
-
-    from app import models
-
-    @jwt.token_in_blacklist_loader
-    def check_if_token_in_blacklist(decrypted_token):
-        jti = decrypted_token["jti"]
-        return models.RevokedTokenModel.is_jti_blacklisted(jti)
-
+  
     from app.resources.observations import observations_blueprint
     app.register_blueprint(observations_blueprint)
 

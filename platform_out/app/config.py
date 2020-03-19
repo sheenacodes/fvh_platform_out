@@ -16,26 +16,8 @@ class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "super-secret-key"
     DEBUG = True
     CSRF_ENABLED = True
-
-    JWT_SECRET_KEY = "jwt-secret-string"
-    JWT_BLACKLIST_ENABLED = True
-    JWT_BLACKLIST_TOKEN_CHECKS = ["access", "refresh"]
-
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
     WTF_CSRF_ENABLED = True
-    REDIS_URL = "redis://redis:6379/0"
-    QUEUES = ["default"]
-
-
-    SASL_UNAME = get_env_variable("SASL_UNAME")
-    SASL_PASSWORD = get_env_variable("SASL_PASSWORD")
-    KAFKA_BROKERS = get_env_variable("KAFKA_BROKERS")
-    SECURITY_PROTOCOL = get_env_variable("SECURITY_PROTOCOL")
-    SASL_MECHANISM = get_env_variable("SASL_MECHANISM")
-    CA_CERT = get_env_variable("CA_CERT")
-
-
 
 class ProductionConfig(Config):
     DEBUG = False
