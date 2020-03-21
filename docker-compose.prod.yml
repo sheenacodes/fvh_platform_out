@@ -18,31 +18,10 @@ services:
       - FLASK_APP=app/__init__.py
       - FLASK_ENV=development
       - APP_SETTINGS=app.config.DevelopmentConfig 
-      - DATABASE_TEST_URL=postgresql://postgres:postgres@platform-db:5432/fvh_db_test
-      - SQL_HOST=platform-db
-      - SQL_PORT=5432
-      - DATABASE=postgres 
-    depends_on:   
-      - platform-db
-
-  platform-db:
-    build:
-        context: ./platform_out/db
-        dockerfile: Dockerfile
-    volumes:
-        - postgres_data:/var/lib/postgresql/data/
-    expose:
-        - 5432
-    environment:
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
-        
+      
   nginx:
     build: ./nginx
     ports:
       - 1338:80
     depends_on:
       - platform_outgoing_api
-
-volumes:
-  postgres_data:
