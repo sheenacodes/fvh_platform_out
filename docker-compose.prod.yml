@@ -12,11 +12,12 @@ services:
       - ./platform_out/:/project/
     expose:
       - 5000
+    env_file: 
+      - variables.env
     environment:
       - FLASK_APP=app/__init__.py
       - FLASK_ENV=development
-      - APP_SETTINGS=app.config.DevelopmentConfig
-      - DATABASE_URL=postgresql://postgres:postgres@platform-db:5432/fvh_db_dev   
+      - APP_SETTINGS=app.config.DevelopmentConfig 
       - DATABASE_TEST_URL=postgresql://postgres:postgres@platform-db:5432/fvh_db_test
       - SQL_HOST=platform-db
       - SQL_PORT=5432
@@ -39,7 +40,7 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 1338:80
     depends_on:
       - platform_outgoing_api
 
