@@ -22,16 +22,22 @@ class Observation(Resource):
         try:
             query_parameters = request.args
             print(query_parameters)
-            min_resulttime = None
-            max_resulttime = None
-            if 'minresulttime' in query_parameters:
-                min_resulttime = request.args['minresulttime']
-                min_resulttime = datetime.strptime(min_resulttime, '%Y-%m-%d,%H:%M:%S.%f')
-            if 'maxresulttime' in query_parameters:
-                max_resulttime = request.args['maxresulttime']
-                max_resulttime = datetime.strptime(max_resulttime, '%Y-%m-%d,%H:%M:%S.%f')
-            print(min_resulttime, max_resulttime)
-            obs = Observations.filter_by_resultime(min_resulttime, max_resulttime)
+            if query_parameters:
+                min_resulttime = None
+                max_resulttime = None
+                if 'minresulttime' in query_parameters:
+                    min_resulttime = request.args['minresulttime']
+                    min_resulttime = datetime.strptime(min_resulttime, '%Y-%m-%d,%H:%M:%S.%f')
+                if 'maxresulttime' in query_parameters:
+                    max_resulttime = request.args['maxresulttime']
+                    max_resulttime = datetime.strptime(max_resulttime, '%Y-%m-%d,%H:%M:%S.%f')
+                print(min_resulttime, max_resulttime)
+                obs = Observations.filter_by_resultime(min_resulttime, max_resulttime)
+            else:
+                result = {"message":"not time period requested in query"}
+                response = jsonify(result)
+                response.status_code = 400
+                return response
         
         except Exception as e:
             print(e)

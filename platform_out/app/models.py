@@ -25,10 +25,10 @@ class Observations(db.Model):
     @classmethod
     def filter_by_resultime(cls, mintime, maxtime):
 
-        if mintime == None:
+        if not mintime:
             obs_list = Observations.query.filter(Observations.resulttime <= maxtime)
 
-        elif maxtime == None:
+        elif not maxtime:
             obs_list = Observations.query.filter(Observations.resulttime >= mintime)
 
         else:
