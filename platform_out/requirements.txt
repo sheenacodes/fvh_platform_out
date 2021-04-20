@@ -34,7 +34,7 @@ pathspec==0.7.0
 pluggy==0.13.1
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
-py==1.8.1
+py==1.10.0
 PyJWT==1.7.1
 pylint==2.4.4
 pyparsing==2.4.6
@@ -93,7 +93,7 @@ pathspec==0.7.0
 pluggy==0.13.1
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
-py==1.8.1
+py==1.10.0
 PyJWT==1.7.1
 pylint==2.4.4
 pyparsing==2.4.6
